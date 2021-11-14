@@ -1,0 +1,49 @@
+{
+  "name": "basic-site-template-ts",
+  "version": "1.0.0",
+  "description": "Site template based on html5 boilerplate with typescript and scss modifications",
+  "license": "MIT",
+  "author": "async-devil",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/async-devil/basic-site-template-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/async-devil/basic-site-template-ts/issues"
+  },
+  "homepage": "https://github.com/async-devil/basic-site-template-ts#readme",
+  "keywords": [
+    "template",
+    "typescript",
+    "scss"
+  ],
+  "scripts": {
+    "start": "npm run build && serve dist -l 3000",
+    "dev": "npm run copy && parcel src/html/*.html --port 3000",
+    "build": "npm run copy && parcel build src/html/*.html",
+    "copy": "rm -rf dist && mkdir dist && cp src/config/.htaccess src/config/browserconfig.xml src/config/robots.txt dist"
+  },
+  "dependencies": {
+    "parcel": "^2.0.1",
+    "serve": "^13.0.2"
+  },
+  "devDependencies": {
+    "@parcel/packager-raw-url": "^2.0.1",
+    "@parcel/transformer-sass": "^2.0.1",
+    "@parcel/transformer-typescript-tsc": "^2.0.1",
+    "@parcel/transformer-webmanifest": "^2.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.1.0",
+    "eslint-config-airbnb-typescript": "^14.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-sonarjs": "^0.10.0",
+    "esprima": "^4.0.1",
+    "prettier": "^2.4.1",
+    "sass": "^1.43.2",
+    "typescript": "^4.4.4"
+  }
+}
