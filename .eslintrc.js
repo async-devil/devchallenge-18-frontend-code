@@ -27,6 +27,7 @@ const mainRules = {
 
 	"no-nested-ternary": 0,
 	"no-bitwise": 1,
+	"no-empty": 0,
 };
 
 const typescriptRules = {

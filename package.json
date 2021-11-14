@@ -1,21 +1,21 @@
 {
-  "name": "basic-site-template-ts",
+  "name": "devchallenge-18-frontend-code",
   "version": "1.0.0",
-  "description": "Site template based on html5 boilerplate with typescript and scss modifications",
+  "description": "DEV challege XVIII frontend code solution",
   "license": "MIT",
   "author": "async-devil",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/async-devil/basic-site-template-ts.git"
+    "url": "git+https://github.com/async-devil/devchallenge-18-frontend-code.git"
   },
   "bugs": {
-    "url": "https://github.com/async-devil/basic-site-template-ts/issues"
+    "url": "https://github.com/async-devil/devchallenge-18-frontend-code/issues"
   },
-  "homepage": "https://github.com/async-devil/basic-site-template-ts#readme",
+  "homepage": "https://github.com/async-devil/devchallenge-18-frontend-code#readme",
   "keywords": [
-    "template",
-    "typescript",
-    "scss"
+    "challenge",
+    "devchallenge18",
+    "frontend-code"
   ],
   "scripts": {
     "start": "npm run build && serve dist -l 3000",
