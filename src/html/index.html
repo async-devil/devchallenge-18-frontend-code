@@ -20,13 +20,38 @@
 		<link rel="stylesheet" href="../css/normalize.css" />
 		<link rel="stylesheet" href="../css/main.scss" />
 
-		<title>Site template</title>
+		<title>Synth</title>
 	</head>
 
 	<body>
-		<h2>If the message down below is “Hello there!” and it is blue, everything works alright</h2>
-		<p id="test">If you see this, something went wrong</p>
-
+		<main>
+			<div id="synth__instruments"></div>
+			<button id="create-instrument-button">Create instrument controller</button>
+		</main>
+		<aside>
+			<form class="synth__select">
+				<h2>Select instruments</h2>
+				<div id="select-instruments"></div>
+				<button type="submit">Select</button>
+			</form>
+			<div class="synth__control form">
+				<h2>Control selected instruments</h2>
+				<div class="synth-control-forms-container">
+					<form class="synth__control_form">
+						<button type="submit">Start</button>
+						<input type="hidden" name="control" value="start" />
+					</form>
+					<form class="synth__control_form">
+						<button type="submit">Stop</button>
+						<input type="hidden" name="control" value="stop" />
+					</form>
+					<form class="synth__control_form">
+						<button type="submit">Pause/Resume</button>
+						<input type="hidden" name="control" value="interrupt" />
+					</form>
+				</div>
+			</div>
+		</aside>
 		<script src="../js/vendor/modernizr-3.11.2.min.js"></script>
 		<script src="../js/plugins.js"></script>
 		<script type="module" src="../ts/main.ts"></script>
