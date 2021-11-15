@@ -1,4 +1,4 @@
-[![wakatime](https://wakatime.com/badge/user/bc8fa60c-fa34-4507-b70f-24bdba32a74d/project/cd330fdd-95a1-45bf-895a-cfa1a4fdbb1b.svg)](https://wakatime.com/badge/user/bc8fa60c-fa34-4507-b70f-24bdba32a74d/project/cd330fdd-95a1-45bf-895a-cfa1a4fdbb1b)
+[![wakatime](https://wakatime.com/badge/github/async-devil/devchallenge-18-frontend-code.svg)](https://wakatime.com/badge/github/async-devil/devchallenge-18-frontend-code)
 
 # DEV challege XVIII frontend code solution
 
