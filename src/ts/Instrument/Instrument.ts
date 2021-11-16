@@ -21,23 +21,18 @@ export class Instrument {
 
 	private oscillator: Oscillator;
 
-	readonly adsr = {
-		a: 50,
-		d: 50,
-		s: 1,
-		r: 400,
-	};
-
 	constructor(dto: CreateInstrumentDto) {
 		this.oscillator = new Oscillator();
 		this.updateInstrument(dto);
 	}
 
 	public changeAdsr(a: number, d: number, s: number, r: number) {
-		this.adsr.a = a;
-		this.adsr.d = d;
-		this.adsr.s = s;
-		this.adsr.r = r;
+		this.oscillator.changeAdsrValue({
+			a,
+			d,
+			s,
+			r,
+		});
 	}
 
 	public updateInstrument(dto: CreateInstrumentDto) {
@@ -58,7 +53,7 @@ export class Instrument {
 
 		const note = notes[0];
 
-		await this.oscillator.playFreqForMs(note.frequency, note.durationMs, this.bpm);
+		await this.oscillator.playFreqForMs(note.frequency, note.durationMs);
 		notes.shift();
 
 		await this.play(notes);

@@ -3,15 +3,17 @@ import { Instruments } from "../Instrument/Instruments";
 export class Oscillator {
 	private audioContext: AudioContext;
 
-	private gain: GainNode;
-
 	private type = Instruments.SINE;
+
+	private adsr = {
+		a: 40,
+		d: 20,
+		s: 0.5,
+		r: 30,
+	};
 
 	constructor() {
 		this.audioContext = new AudioContext();
-		this.gain = this.audioContext.createGain();
-
-		this.gain.gain.value = 0.5;
 	}
 
 	private sleep(ms: number) {
@@ -22,26 +24,59 @@ export class Oscillator {
 		this.type = waveType;
 	}
 
-	public async playFreqForMs(freq: number, duration: number, bpm: number) {
+	public changeAdsrValue(adsr: { a: number; d: number; s: number; r: number }) {
+		this.adsr = adsr;
+	}
+
+	public async playFreqForMs(freq: number, duration: number) {
 		if (freq === 0) return this.sleep(duration);
 
-		const beatDuration = (60 / bpm) * 1000;
+		const attackDuration = this.adsr.a;
+		const decayDuration = this.adsr.d;
+		const releaseDuration = this.adsr.r;
+		const sustainValue = this.adsr.s;
+		let sustainDuration = duration - attackDuration - decayDuration - releaseDuration;
+		sustainDuration = sustainDuration > 0 ? sustainDuration : 0;
 
 		await this.audioContext.resume();
 
 		const oscillator = this.audioContext.createOscillator();
+		const gainNode = this.audioContext.createGain();
 
-		oscillator.connect(this.gain);
+		oscillator.connect(gainNode);
+		gainNode.connect(this.audioContext.destination);
 		oscillator.connect(this.audioContext.destination);
 
 		oscillator.type = this.type;
 		oscillator.frequency.value = freq;
 
-		oscillator.start(0);
-		await this.sleep(duration);
+		oscillator.start(this.audioContext.currentTime);
+
+		gainNode.gain.exponentialRampToValueAtTime(
+			1,
+			this.audioContext.currentTime + attackDuration / 1000
+		);
+		await this.sleep(attackDuration);
+
+		gainNode.gain.exponentialRampToValueAtTime(
+			sustainValue,
+			this.audioContext.currentTime + decayDuration / 1000
+		);
+		await this.sleep(decayDuration);
+
+		gainNode.gain.setValueAtTime(
+			sustainValue,
+			this.audioContext.currentTime + sustainDuration / 1000
+		);
+		await this.sleep(sustainDuration);
+
+		gainNode.gain.exponentialRampToValueAtTime(
+			0.0001,
+			this.audioContext.currentTime + releaseDuration / 1000
+		);
+		await this.sleep(releaseDuration);
 
 		oscillator.stop(0);
-		await this.sleep(beatDuration - duration);
 	}
 
 	public async stop() {
